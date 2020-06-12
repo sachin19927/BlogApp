@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/main">
+<head>
+<title>List Post</title>
+
+<body>
+
+<div layout:fragment="content">
+
+<h2>Posts</h2>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>#</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Posted By Author</th>
+</tr>
+</thead>
+
+<tbody>
+<tr th:each="author,iterator :${authors}">
+<td th:text="${iterator.count}"></td>
+<td th:text="${author.firstName}">First Name</td>
+<td th:text="${author.lastName}">Last Name</td>
+<td th:text="${author.email}">Email</td>
+<td><a th:href="@{/blogposts/byAuthor/}+${author.id}">Posted By Author</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<div> <p th:if="${authors.size()==0}"> No Posts Found.</p></div>
+
+</div>

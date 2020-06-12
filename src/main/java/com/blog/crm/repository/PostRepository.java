@@ -15,5 +15,5 @@ public interface PostRepository extends CrudRepository<Post, Integer> {
 	Post findBySlug(String slug);
 	
 	List<Post> findAllByAuthorIdOrderByPostedOnDesc(Integer id);
-
+	
 }

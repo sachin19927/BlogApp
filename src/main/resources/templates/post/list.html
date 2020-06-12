@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/main">
+<head>
+<title>List Post</title>
+
+<body>
+
+<div layout:fragment="content">
+
+<h2>Posts</h2>
+
+<article th:each="post :${posts}">
+<header>
+
+<h2 th:text="${post.title}">My Blog Post Title</h2>
+<p th:text="${#calendars.format(post.postedOn,'dd/mm/yyyy hh:mm:ss a')}">Posted on</p>
+<!-- Use thymleaf Expression utility object  -->
+
+</header>
+
+<!-- if any html comping from controller will be escaped if we use th:text so use  th:utext to use it has a raw content-->
+<section th:utext="${post.teaser}">
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+</section>
+
+<footer>
+<a th:href="|@{/blogposts/view/}${post.slug}|">Read More</a>   <!--  Link To post controller url to get Single details of Blog -->
+<address>
+Posted by: <a th:href="|mailto: ${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">Author</span></a>
+</address>
+</footer>
+<hr/>
+</article>
+
+<br><br>
+
+
+<div> <p th:if="${posts.size()==0}"> No Posts Found.</p></div>
+
+
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/main">
+<head>
+<title>List Post</title>
+
+<body>
+
+<div layout:fragment="content">
+
+<h2>Auhtors</h2>
+
+<div th:if="${message}" class="alert alert-success" role="alert">
+<p th:text="${message}">success message</p>
+</div>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>#</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Edit</th>
+<th>Delete</th>
+</tr>
+</thead>
+
+<tbody>
+<tr th:each="author,iterator :${authors}">
+<td th:text="${iterator.count}"></td>
+<td th:text="${author.firstName}">First Name</td>
+<td th:text="${author.lastName}">Last Name</td>
+<td th:text="${author.email}">Email</td>
+<td><a th:href="@{/admin/author/edit/}+${author.id}">Edit</a></td>
+<td><a th:href="@{/admin/author/delete/}+${author.id}">Delete</a></td>
+</tr>
+</tbody>
+</table>
+
+<a th:href="@{/admin/author/create}">Add New Author</a>
+<br><br>
+
+<div> <p th:if="${authors.size()==0}"> No Posts Found.</p></div>
+
+</div>

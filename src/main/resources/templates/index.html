@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/main">
+<head>
+<title>Blog Page-Home</title>
+
+
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="row">
+       <h3>About Me</h3>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+ the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
+ and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
+ the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+  1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with 
+  desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+  
+   </div>
+   
+   <article>
+<header>
+
+<h2 th:text="${post.title}">My Blog Post Title</h2>
+<p th:text="${#calendars.format(post.postedOn,'dd/mm/yyyy hh:mm:ss a')}">Posted on</p>
+<!-- Use thymleaf Expression utility object  -->
+
+</header>
+
+<!-- if any html comping from controller will be escaped if we use th:text so use  th:utext to use it has a raw content-->
+<section th:utext="${post.teaser}">
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+</section>
+
+<footer>
+<a th:href="|@{/blogposts/view/}${post.slug}|">Read More</a>   <!--  Link To post controller url to get Single details of Blog -->
+<address>
+Posted by: <a th:href="|mailto: ${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">Author</span></a>
+</address>
+</footer>
+<hr/>
+</article>
+   
+</div>
+
+ 
+</body>
+</html>

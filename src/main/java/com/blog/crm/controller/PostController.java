@@ -19,7 +19,7 @@ public class PostController {
 	@GetMapping("/list")
 	public String home(Model model)
 	{
-		model.addAttribute("post", postService.list());
+		model.addAttribute("posts", postService.list());
 		return "post/list";
 	}
 	
@@ -33,7 +33,7 @@ public class PostController {
 	@GetMapping("/byAuthor/{id}")
 	public String byAuthor(@PathVariable("id") Integer id,Model model)
 	{
-		model.addAttribute("post", postService.listByAuthor(id));
+		model.addAttribute("posts", postService.listByAuthor(id));
 		return "post/list";
 	}
 }

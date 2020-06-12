@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/main" >
+<head>
+<title>Security Demo Login</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+<div class="login-form">
+    <form name="f" th:action=@{/login} method="POST" >
+        <h2 class="text-center">Log in</h2>   
+        <div th:if="${param.error}" class="alert alert-danger">
+		Invalid UserName and Password
+		</div>    
+        <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="#" class="pull-right">Forgot Password?</a>
+        </div>        
+    </form>
+    <p class="text-center"><a href="#">Create an Account</a></p>
+</div>
+
+</div>
+</body>
