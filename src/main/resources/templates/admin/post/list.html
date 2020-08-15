@@ -8,7 +8,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 
 <div layout:fragment="content">
 
-<h2>Posts</h2>
+<h2 th:text="#{heading.posts}">Posts</h2>
 <div th:if="${message}" class="alert alert-success" role="alert">
 <p th:text="${message}">success message</p>
 </div>
@@ -17,13 +17,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 <thead>
 <tr>
 <th>#</th>
-<th>Title</th>
-<th>Posted On</th>
-<th>Slug</th>
-<th>Author</th>
-<th>View</th>
-<th>Edit</th>
-<th>Delete</th>
+<th th:text="#{label.title}">Title</th>
+<th th:text="#{label.postedon}">Posted On</th>
+<th th:text="#{label.slug}">Slug</th>
+<th th:text="#{label.author}">Author</th>
+<th th:text="#{label.view}">View</th>
+<th th:text="#{label.edit}">Edit</th>
+<th th:text="#{label.delete}">Delete</th>
 </tr>
 </thead>
 
@@ -34,17 +34,17 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 <td th:text="${#calendars.format(post.postedOn,'dd/MM/yyyy hh:mm:ss a')}">posted on</td>
 <td th:text="${post.slug}">slug</td>
 <td th:text="${post.author.firstName+' '+ post.author.lastName}">author</td>
-<td><a href="#" th:href="@{/admin/post/}+${post.id}">View</a></td>
-<td><a href="#" th:href="@{/admin/post/edit/}+${post.id}">Edit</a></td>
-<td><a href="#" th:href="@{/admin/post/delete/}+${post.id}">Delete</a></td>
+<td><a href="#" th:href="@{/admin/post/}+${post.id}" th:text="#{label.view}">View</a></td>
+<td><a href="#" th:href="@{/admin/post/edit/}+${post.id}" th:text="#{label.edit}">Edit</a></td>
+<td><a href="#" th:href="@{/admin/post/delete/}+${post.id}" th:text="#{label.delete}">Delete</a></td>
 </tr>
 </tbody>
 </table>
 
-<a th:href="@{/admin/post/create}">Add New Post</a>
+<a th:href="@{/admin/post/create}" th:text="#{label.addpost}">Add New Post</a>
 <br><br>
 
 
-<div><p th:if="${posts.size()==0}">No Posts Found.</p></div>
+<div><p th:if="${posts.size()==0}" th:text="#{label.nopost}">No Posts Found.</p></div>
 
 </div>

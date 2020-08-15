@@ -9,9 +9,12 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 
 <div class="login-form">
     <form name="f" th:action=@{/login} method="POST" >
-        <h2 class="text-center">Log in</h2>   
+        <h2 class="text-center" th:text="#{heading.login}">Log in</h2>   
         <div th:if="${param.error}" class="alert alert-danger">
 		Invalid UserName and Password
+		</div> 
+		 <div th:if="${param.logout}" class="alert alert-success">
+		Logged out successfully
 		</div>    
         <div class="form-group">
             <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required">
@@ -20,7 +23,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block" th:text="#{heading.login}">Log in</button>
         </div>
         <div class="clearfix">
             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>

@@ -15,7 +15,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="row">
-       <h3>About Me</h3>
+       <h3 th:text="#{content.aboutme}" data-th-text="#{content.aboutme}">About Me</h3>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
  the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
  and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
@@ -40,9 +40,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 </section>
 
 <footer>
-<a th:href="|@{/blogposts/view/}${post.slug}|">Read More</a>   <!--  Link To post controller url to get Single details of Blog -->
+<a th:href="|@{/blogposts/view/}${post.slug}|"  th:text="#{content.readmore}">Read More</a>   <!--  Link To post controller url to get Single details of Blog -->
 <address>
-Posted by: <a th:href="|mailto: ${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">Author</span></a>
+<span th:text="#{content.postedby}">Posted by:</span> <a th:href="|mailto: ${post.author.email}|"> <span th:text="|${post.author.firstName} ${post.author.lastName}|">Author</span></a>
 </address>
 </footer>
 <hr/>

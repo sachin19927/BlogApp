@@ -1,0 +1,32 @@
+{
+	"ESANCHAR_OTP": {
+		"SMS.GATEWAY.URL": "https://esanchar.rajasthan.gov.in/esanchar2/api/OBD/CreateOTPRequest",
+		"SMS.GATEWAY.USERNAME": "JvvnlOtp",
+		"SMS.GATEWAY.PASSWORD": "J#VvNL0tp@70",
+		"SMS.GATEWAY.SID": "a57d0313-0a8f-40e1-9d8c-b3b6020a472c",
+		"SMS.GATEWAY.GWID": "",
+		"SMS.GATEWAY.UNIQUEID": "JVVNL_OTP",
+		"SMS.GATEWAY.MASKNAME": "",
+		"SMS.GATEWAY.SERVICENAME": "eSanchar Create OTP Request"
+	},
+	"ESANCHAR_HTTP": {
+		"SMS.GATEWAY.URL": "https://api.sewadwaar.rajasthan.gov.in/app/live/eSanchar/Prod/api/CreateHttp/OBD/SMSRequest",
+		"SMS.GATEWAY.USERNAME": "JvvnlSms",
+		"SMS.GATEWAY.PASSWORD": "Jv#nlv_SmS65",
+		"SMS.GATEWAY.SID": "a57d0313-0a8f-40e1-9d8c-b3b6020a472c",
+		"SMS.GATEWAY.GWID": "",
+		"SMS.GATEWAY.UNIQUEID": "JVVNL_SMS",
+		"SMS.GATEWAY.MASKNAME": "",
+		"SMS.GATEWAY.SERVICENAME": "eSanchar Create OTP Request"
+	},
+	"GUPSHUP": {
+		"SMS.GATEWAY.URL": "http://enterprise.smsgupshup.com/GatewayAPI/rest",
+		"SMS.GATEWAY.USERNAME": "2000162040",
+		"SMS.GATEWAY.PASSWORD": "bcits1234",
+		"SMS.GATEWAY.SID": "TEXT",
+		"SMS.GATEWAY.GWID": "SendMessage",
+		"SMS.GATEWAY.UNIQUEID": "1.1",
+		"SMS.GATEWAY.MASKNAME": "CESCTX",
+		"SMS.GATEWAY.SERVICENAME": ""
+	}
+}

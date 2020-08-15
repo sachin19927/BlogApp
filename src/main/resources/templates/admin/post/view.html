@@ -8,69 +8,69 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 
 <div layout:fragment="content">
 
-<h2>Posts</h2>
+<h2 th:text="#{heading.posts}">Posts</h2>
 
 <form class="form-horizontal">
 
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Title:</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.title}">Title:</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${post.title}">Title</p>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Slug:</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.slug}">Slug:</label>
 <div class="col-md-10">
-<p class="form-control-static" th:text="${post.title}">Title</p>
+<p class="form-control-static" th:text="${post.slug}">Slug</p>
 </div>
 </div>
 
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Posted On:</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.postedon}">Posted On:</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${#calendars.format(post.postedOn,'dd/MM/yyyy hh:mm:ss a')}">Posted On</p>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Keywords</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.keywords}">Keywords</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${post.keywords}">keywords</p>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Active</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.active}">Active</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${post.active}">Title</p>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Author</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.author}">Author</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${post.author.firstName+' '+post.author.lastName}">Author</p>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Teaser</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.teaser}">Teaser</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${post.teaser}">Teaser</p>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Body</label>
+<label class="col-sm-2 control-label" th:text="#{label.view.body}">Body</label>
 <div class="col-md-10">
 <p class="form-control-static" th:text="${post.body}">Body</p>
 </div>
 </div>
 </form>
 
-<a th:href="@{/admin/posts/}">Back To Post List</a>
+<a th:href="@{/admin/posts/}" th:text="#{label.view.backtopost}">Back To Post List</a>
 
 </div>

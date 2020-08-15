@@ -1,0 +1,36 @@
+{
+	"BCITS": {
+		"MAIL.SMTP.HOST": "mail.bcits.in",
+		"MAIL.SMTP.PORT": "587",
+		"MAIL.GATEWAY.USERNAME": "bsmart.rec@bcits.in",
+		"MAIL.GATEWAY.PASSWORD": "Bcits@123",
+		"MAIL.GATEWAY.FROMADDRESS": "bsmart.rec@bcits.in",
+		"MAIL.GATEWAY.FROMNAME": "REC Notification",
+		"MAIL.SMTP.SOCKETFACTORY.PORT": "587",
+		"MAIL.SMTP.SOCKETFACTORY.CLASS": "javax.net.SocketFactory",
+		"MAIL.SMTP.AUTH": "true"
+	},	
+		"GMAIL": {
+		"MAIL.SMTP.HOST": "smtp.gmail.com",
+		"MAIL.SMTP.PORT": "587",
+		"MAIL.GATEWAY.USERNAME": "bcitsiworknotification@gmail.com",
+		"MAIL.GATEWAY.PASSWORD": "Bcits@123",
+		"MAIL.GATEWAY.FROMADDRESS": "bcitsiworknotification@gmail.com",
+		"MAIL.GATEWAY.FROMNAME": "Personal Notification",
+		"MAIL.SMTP.SOCKETFACTORY.PORT": "587",
+		"MAIL.SMTP.SOCKETFACTORY.CLASS": "javax.net.SocketFactory",
+		"MAIL.SMTP.AUTH": "true"
+	}
+	,	
+		"AWS": {
+		"MAIL.SMTP.HOST": "mail.bcits.in",
+		"MAIL.SMTP.PORT": "587",
+		"MAIL.GATEWAY.USERNAME": "bsmart.rec@bcits.in",
+		"MAIL.GATEWAY.PASSWORD": "Bcits@123",
+		"MAIL.GATEWAY.FROMADDRESS": "bsmart.rec@bcits.in",
+		"MAIL.GATEWAY.FROMNAME": "REC Notification",
+		"MAIL.SMTP.SOCKETFACTORY.PORT": "587",
+		"MAIL.SMTP.SOCKETFACTORY.CLASS": "javax.net.SocketFactory",
+		"MAIL.SMTP.AUTH": "true"
+	}
+}

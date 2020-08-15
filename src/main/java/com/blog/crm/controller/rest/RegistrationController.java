@@ -13,27 +13,22 @@ public class RegistrationController {
 
 	@Autowired
 	private NotificationService notificationService;
-	
+
 	@Autowired
 	private AuthorService auhtorService;
-	
-	
-	
+
 	@GetMapping("/signup")
-	public String signup()
-	{
+	public String signup() {
 		return "Please Sign Up for our Service";
 	}
-	
+
 	@GetMapping("/signup-success")
-	public String signupSuccess()
-	{
-		Author author=auhtorService.findByFirstName("Sachin");
+	public String signupSuccess() {
+		Author author = auhtorService.findByFirstName("Sachin");
 		System.err.println(author.getEmail());
 		try {
 			notificationService.sendNotification(author);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "Thank You For registering with us";

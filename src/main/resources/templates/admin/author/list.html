@@ -8,7 +8,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 
 <div layout:fragment="content">
 
-<h2>Auhtors</h2>
+<h2 th:text="#{heading.authors}">Auhtors</h2>
 
 <div th:if="${message}" class="alert alert-success" role="alert">
 <p th:text="${message}">success message</p>
@@ -18,11 +18,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 <thead>
 <tr>
 <th>#</th>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Email</th>
-<th>Edit</th>
-<th>Delete</th>
+<th th:text="#{label.firstname}">First Name</th>
+<th th:text="#{label.lastname}">Last Name</th>
+<th th:text="#{label.email}">Email</th>
+<th th:text="#{label.edit}">Edit</th>
+<th th:text="#{label.delete}">Delete</th>
 </tr>
 </thead>
 
@@ -32,15 +32,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layou
 <td th:text="${author.firstName}">First Name</td>
 <td th:text="${author.lastName}">Last Name</td>
 <td th:text="${author.email}">Email</td>
-<td><a th:href="@{/admin/author/edit/}+${author.id}">Edit</a></td>
-<td><a th:href="@{/admin/author/delete/}+${author.id}">Delete</a></td>
+<td><a th:href="@{/admin/author/edit/}+${author.id}" th:text="#{label.edit}">Edit</a></td>
+<td><a th:href="@{/admin/author/delete/}+${author.id}" th:text="#{label.delete}">Delete</a></td>
 </tr>
 </tbody>
 </table>
 
-<a th:href="@{/admin/author/create}">Add New Author</a>
+<a th:href="@{/admin/author/create}" th:text="#{label.addauthor}">Add New Author</a>
 <br><br>
 
-<div> <p th:if="${authors.size()==0}"> No Posts Found.</p></div>
+<div> <p th:if="${authors.size()==0}" th:text="#{label.noauthor}"> No Posts Found.</p></div>
 
 </div>
