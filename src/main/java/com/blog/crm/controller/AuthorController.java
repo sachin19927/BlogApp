@@ -35,8 +35,9 @@ public class AuthorController {
 	 */
 	@GetMapping("/list")
 	public String listAuthors(Model model) {
-		GenericLogger.info(ModuleName.AUTHOR, this, "Getting List of Authors");
+		GenericLogger.info(ModuleName.LOGGER, this, "Getting List of Authors");
 		model.addAttribute("authors", authorService.list());
+		GenericLogger.info(ModuleName.LOGGER, this, authorService.list().toString());
 		return "author/list";
 	}
 

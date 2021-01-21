@@ -2,7 +2,12 @@ package com.blog.crm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.blog.crm.enums.ModuleName;
+import com.blog.crm.logger.GenericLogger;
 
 /**
  * <h3>Spring Boot Starter class</h3>
@@ -16,7 +21,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class BlogAppApplication {
+public class BlogAppApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(BlogAppApplication.class);
+	}
 
 	/**
 	 * <p>
@@ -26,7 +36,9 @@ public class BlogAppApplication {
 	 * @param args accepts command line arguments
 	 */
 	public static void main(String[] args) {
+		GenericLogger.debug(ModuleName.LOGGER, BlogAppApplication.class, "Blog App Load");
 		SpringApplication.run(BlogAppApplication.class, args);
+		GenericLogger.debug(ModuleName.LOGGER, BlogAppApplication.class, "Blog App Loaded");
 	}
 
 }

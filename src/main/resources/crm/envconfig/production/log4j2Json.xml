@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="30">
+ 
+    <!-- Logging Properties -->
+    <Properties>
+        <Property name="LOG_PATTERN">%d{dd-MM-yyyy HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex</Property>
+        <Property name="CUSTOMLOG_PATTERN">[%d{dd-MM-yyyy HH:mm:ss.SSS}] @:@ ${hostName} @:@ ${bundle:application:product.name} @:@ %m%n%ex</Property>
+        <Property name="APP_LOG_ROOT">/Application/Bijlipraband/standalone</Property>
+        <Property name="PRODUCT_NAME">${bundle:application:product.name}</Property>
+    </Properties>
+     
+    <Appenders>
+     
+      <Kafka name="Kafka" topic="loggers">
+            <PatternLayout pattern="%date %message"/>
+             <!-- <PatternLayout pattern="${CUSTOMLOG_PATTERN}"/> -->
+            <Property name="bootstrap.servers">localhost:9092</Property>
+        </Kafka>
+        <Async name="Async">
+            <AppenderRef ref="Kafka"/>
+        </Async>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        
+        <File name="JSONLogfileAppenderFile" fileName="${APP_LOG_ROOT}/json/${PRODUCT_NAME}.json">
+            <JSONLayout compact="true" eventEol="true" />
+            <BurstFilter  rate="2" maxBurst="10" />
+        </File>
+        <File name="JSONLogfileAppenderInfo" fileName="${APP_LOG_ROOT}/json/${PRODUCT_NAME}_info.json">
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <JSONLayout compact="true" eventEol="true" />
+            <BurstFilter level="INFO" rate="2" maxBurst="10" />
+        </File>
+        <File name="JSONLogfileAppenderError" fileName="${APP_LOG_ROOT}/json/${PRODUCT_NAME}_error.json">
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <JSONLayout compact="true" eventEol="true" />
+            <BurstFilter level="ERROR" rate="2" maxBurst="10" />
+        </File>
+        <File name="JSONLogfileAppenderDebug" fileName="${APP_LOG_ROOT}/json/${PRODUCT_NAME}_debug.json">
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <JSONLayout compact="true" eventEol="true" />
+            <BurstFilter level="DEBUG" rate="2" maxBurst="10" />
+        </File>
+        
+        <Async name="AsyncAppender" bufferSize="80">
+            <AppenderRef ref="JSONLogfileAppenderFile" />
+            <AppenderRef ref="JSONLogfileAppenderInfo" />
+            <AppenderRef ref="JSONLogfileAppenderError" />
+            <AppenderRef ref="JSONLogfileAppenderDebug" />
+        </Async>
+    </Appenders>
+ 
+    <Loggers>
+        
+        <Logger name="com.bcits.bsmartjvvnl" additivity="false" level="info">
+             <!-- <AppenderRef ref="Kafka"/> -->
+             <AppenderRef ref="AsyncAppender" />
+        </Logger>
+      
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+       <!--  <Logger name="org.apache.kafka" level="WARN" /> -->
+    </Loggers>
+ 
+</Configuration>

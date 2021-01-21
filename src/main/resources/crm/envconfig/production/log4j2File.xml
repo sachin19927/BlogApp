@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="30">
+ 
+    <!-- Logging Properties -->
+    <Properties>
+        <Property name="LOG_PATTERN">[%d{dd-MM-yyyy HH:mm:ss.SSS}] %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex</Property>
+        <Property name="CUSTOMLOG_PATTERN">[%d{dd-MM-yyyy HH:mm:ss.SSS}] @:@ ${hostName} @:@ ${bundle:application:product.name} @:@ %m%n%ex</Property>
+        <Property name="APP_LOG_ROOT">/Application/Bijlipraband/standalone</Property>
+        <Property name="PRODUCT_NAME">${bundle:application:product.name}</Property>
+    </Properties>
+     
+    <Appenders>
+     
+       <Kafka name="Kafka" topic="loggers">
+             <PatternLayout pattern="%date %message"/> 
+             <!-- <PatternLayout pattern="${CUSTOMLOG_PATTERN}"/> -->
+            <Property name="bootstrap.servers">http://192.168.10.103:9092</Property>
+        </Kafka>
+        <Async name="Async">
+            <AppenderRef ref="Kafka"/>
+        </Async>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+         
+      <!-- File Appenders on need basis -->
+        <RollingFile name="file" fileName="${APP_LOG_ROOT}/${PRODUCT_NAME}.log"
+            filePattern="${APP_LOG_ROOT}/archive/${PRODUCT_NAME}-%d{dd-MM-yyyy}-%i.log" >
+            <PatternLayout pattern="${CUSTOMLOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+       	
+       	<RollingFile name="infoLog" fileName="${APP_LOG_ROOT}/${PRODUCT_NAME}-info.log"
+            filePattern="${APP_LOG_ROOT}/archive/${PRODUCT_NAME}-info-%d{dd-MM-yyyy}-%i.log" >
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${CUSTOMLOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+        <RollingFile name="errorLog" fileName="${APP_LOG_ROOT}/${PRODUCT_NAME}-error.log"
+            filePattern="${APP_LOG_ROOT}/archive/${PRODUCT_NAME}-error-%d{dd-MM-yyyy}-%i.log" >
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${CUSTOMLOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+         <RollingFile name="debugLog" fileName="${APP_LOG_ROOT}/${PRODUCT_NAME}-debug.log"
+            filePattern="${APP_LOG_ROOT}/archive/${PRODUCT_NAME}-debug-%d{dd-MM-yyyy}-%i.log">
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${CUSTOMLOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+    </Appenders>
+ 
+    <Loggers>
+     
+        <Logger name="com.bcits.bsmartjvvnl" additivity="false" level="info">
+             <!-- <AppenderRef ref="Kafka"/> -->
+             <AppenderRef ref="infoLog" />
+             <AppenderRef ref="errorLog" />
+             <AppenderRef ref="debugLog" />
+              <AppenderRef ref="file"/>
+        </Logger>
+      
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+       <!--  <Logger name="org.apache.kafka" level="WARN" /> -->
+    </Loggers>
+ 
+</Configuration>
