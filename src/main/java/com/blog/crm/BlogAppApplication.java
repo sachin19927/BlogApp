@@ -36,9 +36,11 @@ public class BlogAppApplication extends SpringBootServletInitializer {
 	 * @param args accepts command line arguments
 	 */
 	public static void main(String[] args) {
-		GenericLogger.debug(ModuleName.LOGGER, BlogAppApplication.class, "Blog App Load: v2");
+
+		GenericLogger.debug(ModuleName.LOGGER, BlogAppApplication.class,
+				"Blog App Load has been started: new Terminal");
 		SpringApplication.run(BlogAppApplication.class, args);
-		GenericLogger.debug(ModuleName.LOGGER, BlogAppApplication.class, "Blog App Loaded complete : v3");
+		GenericLogger.debug(ModuleName.LOGGER, BlogAppApplication.class, "Blog App load is completed: old one");
 	}
 
 }
